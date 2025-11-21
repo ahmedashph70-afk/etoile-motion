@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Étoile Motion</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
+    body { background:#000; color:#fff; overflow-x:hidden; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:25px 60px; position:fixed; top:0; width:100%; z-index:10; background:rgba(0,0,0,0.35); backdrop-filter:blur(10px); }
+    header img { height:55px; }
+    nav a { margin-left:30px; color:#fff; text-decoration:none; font-size:18px; transition:0.3s; }
+    nav a:hover { color:#e41b1b; }
+
+    /* HERO */
+    .hero { height:100vh; display:flex; align-items:center; padding:0 8%; background:linear-gradient(120deg, rgba(0,255,150,0.12), rgba(255,0,0,0.12)), url('YOUR_MAIN_IMAGE.jpg'); background-size:cover; background-position:center; position:relative; }
+    .hero::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(to bottom, rgba(0,0,0,0.6), #000 90%); }
+    .hero-content { position:relative; max-width:600px; }
+    .hero h1 { font-size:70px; margin-bottom:20px; font-weight:800; }
+    .hero p { font-size:22px; color:#ddd; margin-bottom:30px; }
+    .btn { padding:14px 32px; background:#e41b1b; border:none; color:#fff; font-size:18px; cursor:pointer; border-radius:8px; transition:0.3s; }
+    .btn:hover { background:#b01414; }
+
+    /* ABOUT */
+    .section { padding:110px 8%; }
+    .title { font-size:50px; margin-bottom:40px; }
+    .about-box { display:flex; gap:60px; align-items:center; }
+    .about-text { max-width:600px; line-height:1.8; font-size:20px; color:#ccc; }
+
+    /* PORTFOLIO */
+    .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; }
+    .item { background:#111; border-radius:10px; padding:20px; transition:0.3s; }
+    .item:hover { transform:scale(1.03); }
+
+    /* CONTACT */
+    .contact p { font-size:22px; color:#ccc; margin-bottom:15px; }
+
+    footer { text-align:center; padding:35px 0; color:#666; margin-top:50px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="etoile_logo.png" alt="logo" />
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Étoile Motion</h1>
+      <p>Where cinematic editing meets visual perfection.</p>
+      <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Work</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <h2 class="title">About</h2>
+    <div class="about-box">
+      <img src="YOUR_MAIN_IMAGE.jpg" style="width:350px; border-radius:12px;" />
+      <p class="about-text">
+        Étoile Motion is a creative video‑editing team specializing in cinematic visuals, color‑grading,
+        motion design, and storytelling. With a unique artistic identity mixing dark tones, red accents,
+        and gold highlights, we deliver powerful visuals that leave a lasting impression.
+      </p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <h2 class="title">Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="item">Your portfolio items will be embedded from Google Drive.</div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <h2 class="title">Contact</h2>
+    <div style="background:#0c0c0c; padding:35px; border-radius:14px; max-width:650px; animation:fadeIn 1.2s ease-out;">
+      <p style="font-size:24px; margin-bottom:20px; color:#fff; font-weight:600;">Send a Message</p>
+      <p style="font-size:20px; margin-bottom:25px; color:#aaa; line-height:1.7;">
+        Feel free to reach out for collaborations, inquiries or bookings.
+      </p>
+      <form style="display:flex; flex-direction:column; gap:18px;">
+        <input type="text" placeholder="Your Name" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;" />
+        <input type="email" placeholder="Your Email" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;" />
+        <textarea placeholder="Your Message" rows="5" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;"></textarea>
+        <button type="submit" style="padding:14px; background:#e41b1b; border:none; color:#fff; font-size:18px; cursor:pointer; border-radius:8px; transition:0.3s;">Send Message</button>
+      </form>
+      <div style="margin-top:35px;">
+        <p style="font-size:22px; color:#e41b1b; margin-bottom:10px; font-weight:600;">Email</p>
+        <p style="font-size:20px; color:#ccc;">ahmedashph70@gmail.com</p>
+      </div>
+    </div>
+    <div style="margin-top:40px; display:flex; gap:20px; align-items:center;">
+      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">Instagram</a>
+      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">YouTube</a>
+      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">TikTok</a>
+    </div>
+
+  </section>
+
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+
+  <footer>>
+    © 2025 Étoile Motion — All Rights Reserved
+  </footer>
+</body>
+</html>
