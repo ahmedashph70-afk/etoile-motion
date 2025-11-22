@@ -81,17 +81,24 @@
 
     /* Responsive */
     @media(max-width:920px){.hero{flex-direction:column}.hero-left{max-width:100%}.hero-photo{width:90%;height:420px}}
-  </style>
+  
+/* 3D Tilt Hover Effect for Reels */
+.portfolio-grid iframe:hover {
+  transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) scale(1.04);
+  transition: 0.35s ease;
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.45);
+}
+</style>
 </head>
 <body>
   <!-- Loader -->
   <div id="loader">
-    <div class="pulse"><img src="/mnt/data/etoile_logo.png" alt="logo"></div>
+    <div class="pulse"><img src="etoile_logo.png" alt="logo"></div>
   </div>
 
   <header>
     <div class="brand">
-      <img src="/mnt/data/etoile_logo.png" alt="Étoile Motion logo" />
+      <img src="etoile_logo.png" alt="Étoile Motion logo" />
       <div style="line-height:1">
         <div style="font-weight:700;color:#fff">Étoile Motion</div>
         <div style="font-size:12px;color:var(--muted)">Cinematic Editing & Visual Storytelling</div>
@@ -125,16 +132,12 @@
           <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})" data-i18n="view">View Work</button>
           <button class="btn ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="contactBtn">Contact</button>
         </div>
-        <div class="socials" aria-hidden="false">
-          <a href="#" title="Instagram" id="insta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37a4 4 0 1 1-7.999.001A4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
-          <a href="#" title="YouTube" id="yt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M22 9.75s-.22-1.56-.9-2.24c-.86-.9-1.83-.9-2.27-.95C15.67 6 12 6 12 6s-3.66 0-6.83.58c-.44.05-1.41.05-2.27.95C1.22 8.19 1 9.75 1 9.75S1 11.34 1 13v1.99c0 1.66.22 3.25.22 3.25s.22 1.56.9 2.24c.86.9 1.99.87 2.5.97C8.34 22 12 22 12 22s3.66 0 6.83-.58c.44-.05 1.41-.05 2.27-.95.68-.68.9-2.24.9-2.24s.22-1.59.22-3.25V13c0-1.66-.22-3.25-.22-3.25z"/><path d="M10 14l6-3-6-3v6z"/></svg></a>
-          <a href="#" title="TikTok" id="tt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M9 18c0-3 2-6 6-6"/><path d="M9 6v6h6"/><path d="M12 2v2"/></svg></a>
-        </div>
+        
       </div>
 
       <div class="hero-right">
         <div class="hero-photo" aria-hidden="false">
-          <img src="/mnt/data/YOUR_MAIN_IMAGE.jpg" alt="Hero photo">
+          <img src="main.jpg" alt="Hero photo">
         </div>
       </div>
     </section>
@@ -151,14 +154,14 @@
     <section class="card" id="portfolio">
       <div class="title" data-i18n="portfolioTitle">Portfolio</div>
       <div class="portfolio-grid" id="portfolioGrid">
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1jDw2ZLUy2-JXlrNOSlwVcok44Gm4PV1n/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1IopjigUaIHvlcDqdHVOF1sJzo9CnFaE1/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1A1Mz20sGNmt_rEtvVkShC66HXI7z9KII/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1I3GTTKVbCMIKxYkGDC85NVLxLxoTYTqJ/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1-SfUdeLJ6ylsOAwDv_tP84iNUC5nscwP/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1kflxZVdlLIOyBnT3CCvUH1JupZ8d-l4p/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1sNM58IbegjXcdBCthLvrnV3mTjh2sfTX/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
-        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1ZeeyiDCihTcwKqBD5hWpqI2IMnz2-x5Q/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1jDw2ZLUy2-JXlrNOSlwVcok44Gm4PV1n/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1IopjigUaIHvlcDqdHVOF1sJzo9CnFaE1/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1A1Mz20sGNmt_rEtvVkShC66HXI7z9KII/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1I3GTTKVbCMIKxYkGDC85NVLxLxoTYTqJ/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1-SfUdeLJ6ylsOAwDv_tP84iNUC5nscwP/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1kflxZVdlLIOyBnT3CCvUH1JupZ8d-l4p/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1sNM58IbegjXcdBCthLvrnV3mTjh2sfTX/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1ZeeyiDCihTcwKqBD5hWpqI2IMnz2-x5Q/preview" width="100%" height="520" allow="autoplay; encrypted-media" style="width:100%; aspect-ratio:9/16; border:3px solid gold; border-radius:14px; object-fit:cover;"></iframe></div></div>
       </div>
     </section>
 
@@ -194,11 +197,7 @@
         </div>
 
         <div style="margin-top:16px">
-          <div class="socials">
-            <a href="#" id="linkInsta">Instagram</a>
-            <a href="#" id="linkYT">YouTube</a>
-            <a href="#" id="linkTT">TikTok</a>
-          </div>
+          
         </div>
       </div>
     </section>
