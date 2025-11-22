@@ -3,117 +3,275 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Étoile Motion</title>
+  <title>Étoile Motion — Portfolio</title>
+  <meta name="description" content="Étoile Motion — cinematic video editing, color grading and motion design." />
+  <meta property="og:title" content="Étoile Motion" />
+  <meta property="og:description" content="Cinematic edits, strong visuals — Étoile Motion." />
+  <meta property="og:image" content="/mnt/data/etoile_logo.png" />
+  <meta name="theme-color" content="#000000" />
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
-    body { background:#000; color:#fff; overflow-x:hidden; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:25px 60px; position:fixed; top:0; width:100%; z-index:10; background:rgba(0,0,0,0.35); backdrop-filter:blur(10px); }
-    header img { height:55px; }
-    nav a { margin-left:30px; color:#fff; text-decoration:none; font-size:18px; transition:0.3s; }
-    nav a:hover { color:#e41b1b; }
+    :root{
+      --bg:#000000;
+      --panel:#0b0b0b;
+      --muted:#bfc7d1;
+      --accent:#8b0000; /* dark red */
+      --gold:#d4af37;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,Arial,system-ui;background:linear-gradient(180deg,#000 0%,#060606 100%);color:var(--muted);-webkit-font-smoothing:antialiased}
+
+    /* Loader */
+    #loader{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999}
+    #loader .pulse{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 40px rgba(212,175,55,0.18);animation:logoPulse 1.6s infinite}
+    #loader img{width:70px;height:70px;object-fit:contain}
+    @keyframes logoPulse{0%{transform:scale(0.95)}50%{transform:scale(1.06)}100%{transform:scale(0.95)}}
+
+    header{position:fixed;top:0;left:0;right:0;height:76px;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.25));backdrop-filter:blur(6px);z-index:60}
+    .brand{display:flex;gap:14px;align-items:center}
+    .brand img{height:56px;width:56px;border-radius:10px}
+    nav{display:flex;gap:18px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .lang-switch{display:flex;gap:8px}
+    .lang-switch button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    main{padding-top:100px;max-width:1200px;margin:0 auto}
 
     /* HERO */
-    .hero { height:100vh; display:flex; align-items:center; padding:0 8%; background:linear-gradient(120deg, rgba(0,255,150,0.12), rgba(255,0,0,0.12)), url('YOUR_MAIN_IMAGE.jpg'); background-size:cover; background-position:center; position:relative; }
-    .hero::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(to bottom, rgba(0,0,0,0.6), #000 90%); }
-    .hero-content { position:relative; max-width:600px; }
-    .hero h1 { font-size:70px; margin-bottom:20px; font-weight:800; }
-    .hero p { font-size:22px; color:#ddd; margin-bottom:30px; }
-    .btn { padding:14px 32px; background:#e41b1b; border:none; color:#fff; font-size:18px; cursor:pointer; border-radius:8px; transition:0.3s; }
-    .btn:hover { background:#b01414; }
+    .hero{min-height:78vh;display:flex;align-items:center;gap:40px;padding:48px 6%;position:relative}
+    .hero-left{max-width:640px}
+    .kicker{color:var(--gold);font-weight:700;letter-spacing:1px;margin-bottom:10px}
+    .hero h1{font-size:56px;line-height:1.03;color:#fff;margin-bottom:18px}
+    .hero p{color:rgba(255,255,255,0.78);font-size:20px;margin-bottom:22px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--accent);color:#fff;padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    .hero-right{flex:1;display:flex;justify-content:center}
+    .hero-photo{width:420px;height:520px;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.7);border:1px solid rgba(212,175,55,0.06)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* ABOUT */
-    .section { padding:110px 8%; }
-    .title { font-size:50px; margin-bottom:40px; }
-    .about-box { display:flex; gap:60px; align-items:center; }
-    .about-text { max-width:600px; line-height:1.8; font-size:20px; color:#ccc; }
+    /* SECTIONS */
+    section.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:48px 6%;border-top:1px solid rgba(255,255,255,0.02)}
+    .title{font-size:42px;color:#fff;margin-bottom:18px}
+    .about{display:flex;gap:30px;align-items:center}
+    .about .text{max-width:680px;color:var(--muted);line-height:1.7}
 
     /* PORTFOLIO */
-    .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; }
-    .item { background:#111; border-radius:10px; padding:20px; transition:0.3s; }
-    .item:hover { transform:scale(1.03); }
+    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+    .item{background:var(--panel);border-radius:12px;overflow:hidden;padding:10px;opacity:0;transform:translateY(16px);transition:transform 0.8s cubic-bezier(.2,.9,.2,1),box-shadow 0.3s,opacity 0.6s}
+    .item .frame{border-radius:8px;overflow:hidden;background:#000}
+    .item.show{opacity:1;transform:translateY(0)}
+    .item:hover{transform:translateY(-10px) scale(1.03) rotate3d(1,1,0,6deg);box-shadow:0 18px 60px rgba(212,175,55,0.16),0 4px 18px rgba(0,0,0,0.6)}
+
+    /* Socials */
+    .socials{display:flex;gap:12px;margin-top:20px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:var(--muted)}
+    .socials a svg{width:20px;height:20px}
 
     /* CONTACT */
-    .contact p { font-size:22px; color:#ccc; margin-bottom:15px; }
+    .contact-panel{max-width:760px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:12px}
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+    input,textarea{background:#0b0b0b;border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:8px;color:var(--muted);font-size:16px}
+    textarea{resize:vertical}
+    .small{font-size:13px;color:rgba(255,255,255,0.5)}
 
-    footer { text-align:center; padding:35px 0; color:#666; margin-top:50px; }
+    /* Footer */
+    footer{padding:30px 6%;text-align:center;color:rgba(255,255,255,0.45)}
+
+    /* Responsive */
+    @media(max-width:920px){.hero{flex-direction:column}.hero-left{max-width:100%}.hero-photo{width:90%;height:420px}}
   </style>
 </head>
 <body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="pulse"><img src="/mnt/data/etoile_logo.png" alt="logo"></div>
+  </div>
+
   <header>
-    <img src="etoile_logo.png" alt="logo" />
-    <nav>
-      <a href="#hero">Home</a>
-      <a href="#about">About</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h1>Étoile Motion</h1>
-      <p>Where cinematic editing meets visual perfection.</p>
-      <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Work</button>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <h2 class="title">About</h2>
-    <div class="about-box">
-      <img src="YOUR_MAIN_IMAGE.jpg" style="width:350px; border-radius:12px;" />
-      <p class="about-text">
-        Étoile Motion is a creative video‑editing team specializing in cinematic visuals, color‑grading,
-        motion design, and storytelling. With a unique artistic identity mixing dark tones, red accents,
-        and gold highlights, we deliver powerful visuals that leave a lasting impression.
-      </p>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section class="section" id="portfolio">
-    <h2 class="title">Portfolio</h2>
-    <div class="portfolio-grid">
-      <div class="item">Your portfolio items will be embedded from Google Drive.</div>
-      <div class="item"></div>
-      <div class="item"></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <h2 class="title">Contact</h2>
-    <div style="background:#0c0c0c; padding:35px; border-radius:14px; max-width:650px; animation:fadeIn 1.2s ease-out;">
-      <p style="font-size:24px; margin-bottom:20px; color:#fff; font-weight:600;">Send a Message</p>
-      <p style="font-size:20px; margin-bottom:25px; color:#aaa; line-height:1.7;">
-        Feel free to reach out for collaborations, inquiries or bookings.
-      </p>
-      <form style="display:flex; flex-direction:column; gap:18px;">
-        <input type="text" placeholder="Your Name" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;" />
-        <input type="email" placeholder="Your Email" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;" />
-        <textarea placeholder="Your Message" rows="5" style="padding:14px; background:#111; border:none; border-radius:8px; color:#fff; font-size:18px;"></textarea>
-        <button type="submit" style="padding:14px; background:#e41b1b; border:none; color:#fff; font-size:18px; cursor:pointer; border-radius:8px; transition:0.3s;">Send Message</button>
-      </form>
-      <div style="margin-top:35px;">
-        <p style="font-size:22px; color:#e41b1b; margin-bottom:10px; font-weight:600;">Email</p>
-        <p style="font-size:20px; color:#ccc;">ahmedashph70@gmail.com</p>
+    <div class="brand">
+      <img src="/mnt/data/etoile_logo.png" alt="Étoile Motion logo" />
+      <div style="line-height:1">
+        <div style="font-weight:700;color:#fff">Étoile Motion</div>
+        <div style="font-size:12px;color:var(--muted)">Cinematic Editing & Visual Storytelling</div>
       </div>
     </div>
-    <div style="margin-top:40px; display:flex; gap:20px; align-items:center;">
-      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">Instagram</a>
-      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">YouTube</a>
-      <a href="#" style="font-size:26px; color:#fff; text-decoration:none;">TikTok</a>
+
+    <div style="display:flex;gap:18px;align-items:center">
+      <nav>
+        <a href="#hero" data-i18n="home">Home</a>
+        <a href="#about" data-i18n="about">About</a>
+        <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
+        <a href="#contact" data-i18n="contact">Contact</a>
+      </nav>
+
+      <div class="lang-switch" style="margin-left:12px">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">AR</button>
+        <button data-lang="fr">FR</button>
+      </div>
     </div>
+  </header>
 
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-left">
+        <div class="kicker" data-i18n="kicker">Étoile Motion</div>
+        <h1 data-i18n="title">Where cinematic editing meets visual perfection</h1>
+        <p data-i18n="subtitle">We craft cinematic visuals, color grading and motion design that elevate stories.</p>
+        <div class="cta">
+          <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})" data-i18n="view">View Work</button>
+          <button class="btn ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="contactBtn">Contact</button>
+        </div>
+        <div class="socials" aria-hidden="false">
+          <a href="#" title="Instagram" id="insta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37a4 4 0 1 1-7.999.001A4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" title="YouTube" id="yt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M22 9.75s-.22-1.56-.9-2.24c-.86-.9-1.83-.9-2.27-.95C15.67 6 12 6 12 6s-3.66 0-6.83.58c-.44.05-1.41.05-2.27.95C1.22 8.19 1 9.75 1 9.75S1 11.34 1 13v1.99c0 1.66.22 3.25.22 3.25s.22 1.56.9 2.24c.86.9 1.99.87 2.5.97C8.34 22 12 22 12 22s3.66 0 6.83-.58c.44-.05 1.41-.05 2.27-.95.68-.68.9-2.24.9-2.24s.22-1.59.22-3.25V13c0-1.66-.22-3.25-.22-3.25z"/><path d="M10 14l6-3-6-3v6z"/></svg></a>
+          <a href="#" title="TikTok" id="tt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M9 18c0-3 2-6 6-6"/><path d="M9 6v6h6"/><path d="M12 2v2"/></svg></a>
+        </div>
+      </div>
 
-  <style>
-    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  </style>
+      <div class="hero-right">
+        <div class="hero-photo" aria-hidden="false">
+          <img src="/mnt/data/YOUR_MAIN_IMAGE.jpg" alt="Hero photo">
+        </div>
+      </div>
+    </section>
 
-  <footer>>
-    © 2025 Étoile Motion — All Rights Reserved
+    <!-- ABOUT -->
+    <section class="card" id="about">
+      <div class="title" data-i18n="aboutTitle">About</div>
+      <div class="about">
+        <div class="text" data-i18n="aboutText">Étoile Motion is a creative video-editing team specializing in cinematic visuals, color-grading, motion design, and storytelling. We mix dark tones, bold red accents and gold highlights to deliver powerful visuals that stand out.</div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="card" id="portfolio">
+      <div class="title" data-i18n="portfolioTitle">Portfolio</div>
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1jDw2ZLUy2-JXlrNOSlwVcok44Gm4PV1n/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1IopjigUaIHvlcDqdHVOF1sJzo9CnFaE1/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1A1Mz20sGNmt_rEtvVkShC66HXI7z9KII/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1I3GTTKVbCMIKxYkGDC85NVLxLxoTYTqJ/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1-SfUdeLJ6ylsOAwDv_tP84iNUC5nscwP/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1kflxZVdlLIOyBnT3CCvUH1JupZ8d-l4p/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1sNM58IbegjXcdBCthLvrnV3mTjh2sfTX/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+        <div class="item"><div class="frame"><iframe src="https://drive.google.com/file/d/1ZeeyiDCihTcwKqBD5hWpqI2IMnz2-x5Q/preview" width="100%" height="240" allow="autoplay; encrypted-media"></iframe></div></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="card" id="contact">
+      <div class="title" data-i18n="contactTitle">Contact</div>
+      <div class="contact-panel">
+        <p class="small">Send a message — I usually reply within 24 hours.</p>
+        <!-- Formspree: replace `yourFormID` with your form ID from Formspree or use EmailJS for direct email sending -->
+        <form id="contactForm" action="https://formspree.io/f/yourFormID" method="POST">
+          <div class="field">
+            <label class="small">Name</label>
+            <input type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label class="small">Email</label>
+            <input type="email" name="email" placeholder="you@email.com" required />
+          </div>
+          <div class="field">
+            <label class="small">Message</label>
+            <textarea name="message" rows="5" placeholder="Write your message" required></textarea>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <button class="btn" type="submit">Send Message</button>
+            <div id="formStatus" class="small" style="color:var(--muted)"></div>
+          </div>
+          <input type="hidden" name="_subject" value="New message from Étoile Motion site" />
+        </form>
+
+        <div style="margin-top:18px;color:var(--muted)">
+          <strong style="color:var(--gold)">Email</strong>
+          <div>ahmedashph70@gmail.com</div>
+        </div>
+
+        <div style="margin-top:16px">
+          <div class="socials">
+            <a href="#" id="linkInsta">Instagram</a>
+            <a href="#" id="linkYT">YouTube</a>
+            <a href="#" id="linkTT">TikTok</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 Étoile Motion — All rights reserved
   </footer>
+
+  <script>
+    // Loader
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{
+        const l = document.getElementById('loader');
+        l.style.opacity = '0';
+        l.style.pointerEvents = 'none';
+        setTimeout(()=>l.remove(),600);
+      },800);
+    });
+
+    // i18n simple
+    const translations = {
+      en: {
+        home:'Home', about:'About', portfolio:'Portfolio', contact:'Contact',
+        kicker:'Étoile Motion', title:'Where cinematic editing meets visual perfection', subtitle:'We craft cinematic visuals, color grading and motion design that elevate stories.', view:'View Work', contactBtn:'Contact'
+      },
+      ar: {
+        home:'الرئيسية', about:'من نحن', portfolio:'الأعمال', contact:'تواصل',
+        kicker:'Étoile Motion', title:'حيث يلتقي المونتاج السينمائي مع الكمال البصري', subtitle:'نصنع مشاهد سينمائية، تدرج ألوان وتصاميم موشن ترفع مستوى قصتك.', view:'عرض الأعمال', contactBtn:'تواصل'
+      },
+      fr: {
+        home:'Accueil', about:'À propos', portfolio:'Portfolio', contact:'Contact',
+        kicker:'Étoile Motion', title:'Là où le montage cinématographique rencontre la perfection visuelle', subtitle:"Nous réalisons des visuels cinématographiques, l'étalonnage et le motion design qui élèvent les histoires.", view:'Voir Portfolio', contactBtn:'Contact'
+      }
+    };
+
+    function setLang(lang){
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      if(lang==='ar') document.documentElement.dir='rtl'; else document.documentElement.dir='ltr';
+    }
+    document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click', ()=>setLang(b.dataset.lang)));
+    setLang('en');
+
+    // Scroll animation (IntersectionObserver)
+    const items = document.querySelectorAll('.item');
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    },{threshold:0.18});
+    items.forEach(i=>io.observe(i));
+
+    // Contact form submission (Formspree fallback)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      status.textContent='Sending...';
+      const data = new FormData(form);
+      try{
+        const res = await fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}});
+        if(res.ok){ status.textContent='Message sent — thank you!'; form.reset(); }
+        else { const json = await res.json(); status.textContent=(json.error?json.error:'Sending failed.'); }
+      }catch(err){ status.textContent='Network error — please try again.' }
+    });
+
+    // small UX: smooth scroll for nav
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click', (e)=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});}));
+
+  </script>
 </body>
 </html>
