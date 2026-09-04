@@ -1,4 +1,4 @@
-اتفضل الكود كامل، انسخه كله والصقه في index.html بدل القديم:
+Now I have the full picture. Here's the complete final code — انسخه كله والصقه بدل ملف index.html القديم:
 
 ```html
 <!DOCTYPE html>
@@ -12,6 +12,7 @@
 <meta property="og:description" content="Cinematic edits, bold visuals — Étoile Motion." />
 <meta property="og:image" content="etoile_logo.png" />
 <meta name="theme-color" content="#0A0A0A" />
+<link rel="icon" type="image/png" href="etoile_logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -90,6 +91,12 @@
   /* ===== HERO ===== */
   .hero{min-height:88vh;display:flex;align-items:center;gap:56px;padding:64px 0 40px;position:relative}
   .hero-left{flex:1;max-width:600px}
+  .name-tag{font-family:'Archivo Black',Arial;font-size:20px;letter-spacing:1px;margin-bottom:18px;text-transform:uppercase}
+  .name-tag .n1{color:var(--green)}
+  .name-tag .n2{color:var(--red)}
+  .photo-caption{text-align:center;margin-top:16px;font-family:'Archivo Black',Arial;font-size:16px;letter-spacing:1px;text-transform:uppercase}
+  .photo-caption .n1{color:var(--green)}
+  .photo-caption .n2{color:var(--red)}
   .badge{display:inline-flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);padding:9px 16px;border-radius:30px;font-size:13px;font-weight:700;color:#fff;margin-bottom:26px}
   .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(20,114,64,0.22);animation:dotPulse 2s infinite}
   @keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -238,6 +245,7 @@
       <!-- HERO -->
       <section class="hero" id="hero">
         <div class="hero-left">
+          <div class="name-tag"><span class="n1">Samya</span> <span class="n2">NASSIRI</span></div>
           <div class="badge"><span class="dot"></span> <span data-i18n="badge">Available for new projects</span></div>
           <h1><span data-i18n="titleA">Cinematic edits.</span><br><span class="accent" data-i18n="titleB">Bold visuals.</span></h1>
           <p data-i18n="subtitle">We craft cinematic visuals, color grading and motion design that elevate stories — from Fayoum to the world.</p>
@@ -258,6 +266,7 @@
               <div class="val">6+</div>
             </div>
           </div>
+          <div class="photo-caption"><span class="n1">Samya</span> <span class="n2">NASSIRI</span></div>
         </div>
       </section>
 
@@ -456,7 +465,7 @@
         folioEyebrow:'أعمال مختارة', portfolioTitle:'الأعمال',
         portfolioLede:'مجموعة مختارة من المونتاج السينمائي والريلز وأعمال الموشن — صُممت لعلامات تجارية في الخليج وشمال أفريقيا.',
         reelTag:'ريل',
-        servicesEyebrow:'خدماتنا', servicesTitle:'الخدمات',
+        servicesEyebرow:'خدماتنا', servicesTitle:'الخدمات',
         svc1Title:'مونتاج فيديو', svc1Text:'قص سينمائي وإيقاع وسرد قصصي للإعلانات والريلز والبودكاست.',
         svc2Title:'تدرج الألوان', svc2Text:'تدرج ألوان يعكس المزاج المطلوب ويمنح كل لقطة طابعاً مميزاً واحترافياً.',
         svc3Title:'موشن جرافيك', svc3Text:'عناوين وانتقالات ورسوم متحركة ترفع من مستوى القصة.',
